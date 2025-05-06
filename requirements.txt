@@ -1,0 +1,4 @@
+numpy
+scipy
+tqdm
+git+https://github.com/nobeam/eleganttools.git
