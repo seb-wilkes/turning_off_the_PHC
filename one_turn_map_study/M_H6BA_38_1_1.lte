@@ -592,7 +592,7 @@ sp6       : line=(LS, S6_dlm_28, SE, bpm, dlm_27, GS, Q0L, dlm_26, COR_11, dlm_2
 ring     : line=(AP, MAL, sp1, sp2, sp3, sp4, sp5, sp6, AP)
 ringRF   : line=(Q, AP, wp0, MAL, sp1, sp2, sp3, sp4, sp5, sp6, RAD, CAV, IBS, impedance, AP)
 
-ring_OTM_RF   : line=(Q, AP, wp0, ILMATRIX, RAD, CAV,  impedance, IBS, AP)
+ring_OTM_RF   : line=(Q, AP, wp0, ILM, RAD, CAV,  impedance, IBS, AP)
 
 
 
