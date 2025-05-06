@@ -1,0 +1,20 @@
+&run_setup
+	lattice = "M_H6BA_38_1_1.lte",
+	p_central_mev = 3.5e3,
+	use_beamline = "ringRF",
+	default_order = 3,
+&end
+
+&twiss_output
+	filename = %s.twi,
+ 	statistics = 1,
+	radiation_integrals = 1,
+	higher_order_chromaticity = 1,
+&end
+
+&rf_setup
+	filename = %s.rf,
+	harmonic = 934,
+	total_voltage = 1.42e6,
+	track_for_frequency = 1,
+&end

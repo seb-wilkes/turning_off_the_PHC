@@ -1,0 +1,68 @@
+&global_settings   
+    mpi_io_write_buffer_size = 1000000
+&end
+
+&run_setup
+    lattice = "M_H6BA_38_1_1.lte",
+    p_central_mev = 3.5e3,
+    use_beamline="ringRF",
+    default_order = 3,
+!     monitor_memory_usage = 1,
+!     output = restart_1.out
+    show_element_timing=1,
+!     output = "EQ_BEAM.sdds"
+&end
+
+
+&insert_elements
+  name = wp0,
+  element_def = "wwww: watch,filename="/dls/physics/exr35747/simulation_output/tl_studies/ibs/<Q>.param",mode="param",start_pid=-1,end_pid=-1, flush_interval=1000, START_PASS=1, interval=500"
+&end
+
+&insert_elements
+  name = wp0,
+  element_def = "wwww2: watch,filename="/dls/physics/exr35747/simulation_output/tl_studies/ibs/<Q>.out",mode="coord",start_pid=-1,end_pid=-1, flush_interval=1000, START_PASS=24980"
+&end
+
+
+! &insert_elements
+!         name = impedance,
+!         element_def = "lrwake:  lrwake, inputfile="/home/exr35747/Documents/Practice/kicker_test/ilmatrix/lr_z/res2id1_wake.sdds", tcolumn="Time", wxcolumn="WakeDX", wycolumn="WakeDY", xfactor=0.4399761739481529, yfactor=0.5915870562368424, turns_to_keep=3"
+! &end
+
+&insert_elements
+        name = impedance,
+        element_def = "lon_rw_impedance: zlongit,zreal="/dls/physics/exr35747/my_own_elegant/beam_loading/impedance_longitudinal_real_elegant_openIDs_closedcoll.sdds"="Freq"+"RealZ",zimag="/dls/physics/exr35747/my_own_elegant/beam_loading/impedance_longitudinal_imag_elegant_openIDs_closedcoll.sdds"="Freq"+"ImagZ",interpolate=1,bunched_beam_mode=1"
+&end
+
+&insert_elements
+        name = impedance,
+        element_def = "trans_rw_impedance: ztransverse,inputfile="/dls/physics/exr35747/my_own_elegant/beam_loading/impedance_transverse_elegant_openIDs_closedcoll.sdds",freqcolumn="Freq",zxreal="RealX",zximag="ImagX",zyreal="RealY",zyimag="ImagY",interpolate=1,bunched_beam_mode=1,xfactor=0.12180258,yfactor=0.2870789"
+&end
+
+&alter_elements  
+        name = Q  
+        item = TOTAL  
+        type = charge  
+        value = <Q>
+        differential = 0  
+        multiplicative = 0  
+        alter_at_each_step = 0 
+&end
+
+
+&twiss_output
+	matched = 1
+&end
+
+&run_control 
+	n_steps = 1,
+        n_passes = 25000,	
+&end
+
+&sdds_beam
+        input = "./bunch.out",
+        use_bunched_mode = 1
+&end
+
+&track &end

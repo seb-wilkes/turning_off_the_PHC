@@ -1,0 +1,29 @@
+&run_setup
+	lattice = "M_H6BA_38_1_1.lte",
+	use_beamline = GB, ! just a zero-length drift section set up in the lattice file
+	p_central_mev = 3.5e3,
+	output = bunch.out,
+	random_number_seed = 55678928!55678928,
+&end
+
+&run_control
+	n_steps = 1,
+	n_passes = 1, !how many revolutions
+&end
+
+! defining a single bunch to be passed into sdds_beam which can duplicate it many times to form a beam.
+&bunched_beam
+	n_particles_per_bunch = 16000,
+	! matched_to_cell = ringRF,
+	!centroid[2] = 0.00005, ! x,x',y,y',t,delta (numerical errors create small amounts of jitter when centroid set to 0)
+	!centroid[5] = 0.001,
+	beta_x = 8.21000658,
+	beta_y = 3.48336292,
+	sigma_s = 3.754e-3, !bunch length
+	sigma_dp = 9.391450e-4, !fractional momentum spread
+	emit_x = 1.608946e-10, !horizontal emittance
+	emit_y = 8e-12, !vertical emittance
+	enforce_rms_values[0] = 3*3,
+&end
+
+&track &end
