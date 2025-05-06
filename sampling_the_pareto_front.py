@@ -11,7 +11,7 @@ max_current = 370 #mA
 min_current = 10 #mA
 current_sampling_points = 170
 
-print(f"For current range [150,800]mA, this corresponds to a current step size of {(max_current-min_current)/current_sampling_points}")
+print(f"For current range [{min_current},{max_current}]mA, this corresponds to a current step size of {(max_current-min_current)/current_sampling_points}")
 
 
 vertical_emittance_start_value = 1 # pm rad
